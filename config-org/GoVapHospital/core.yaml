@@ -210,18 +210,18 @@ peer:
         clientAuthRequired: false
         # X.509 certificate used for TLS server
         cert:
-            file: tls/server.crt
+            file: /etc/hyperledger/fabric/tls-msp/tlscacerts/tls-10-102-10-236-7052.pem
         # Private key used for TLS server (and client if clientAuthEnabled
         # is set to true
         key:
-            file: tls/server.key
+            file: /etc/hyperledger/fabric/tls-msp/keystore/key.pem
         # Trusted root certificate chain for tls.cert
         rootcert:
-            file: tls/ca.crt
+            file: /etc/hyperledger/fabric/tls-msp/signcerts/cert.pem
         # Set of root certificate authorities used to verify client certificates
         clientRootCAs:
             files:
-              - tls/ca.crt
+              - /etc/hyperledger/fabric/tls-msp/signcerts/cert.pem
         # Private key used for TLS when making client connections.  If
         # not set, peer.tls.key.file will be used instead
         clientKey:
@@ -272,7 +272,7 @@ peer:
                 KeyStore:
 
     # Path on the file system where peer will find MSP local configurations
-    mspConfigPath: /var/hyperledger/peer1.govaphospital.healthcare.tech/msp
+    mspConfigPath: /var/hyperledger/GoVapHospital/msp
 
     # Identifier of the local MSP
     # ----!!!!IMPORTANT!!!-!!!IMPORTANT!!!-!!!IMPORTANT!!!!----
