@@ -1,0 +1,29 @@
+##### Defines three organizations   ####
+
+##### Orderer for Healcare network ####
+OrdererOrgs:
+  - Name: Orderer
+    Domain: healthcare.tech
+    #EnableNodeOUs: true
+    Specs:
+      - Hostname: orderer
+      
+PeerOrgs:
+  #### Peers for Thu Duc Hospital
+  - Name: ThuDucHospital
+    Domain: thuduchospital.healthcare.tech
+    #EnableNodeOUs: true
+    Specs:
+      - Hostname: peer1.thuduchospital.healthcare.tech
+        CommonName: peer1.thuduchospital.healthcare.tech
+    Users:
+      Count: 1
+  #### Peers for Go Vap Hospital
+  - Name: GoVapHospital
+    Domain: govaphospital.healthcare.tech
+    #EnableNodeOUs: true
+    Specs:
+      - Hostname: peer1.govaphospital.healthcare.tech
+        CommonName: peer1.govaphospital.healthcare.tech
+    Users:
+      Count: 1
