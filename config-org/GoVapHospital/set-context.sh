@@ -14,7 +14,7 @@
 
 # export ORG_CONTEXT=$1
 # MSP_ID="$(tr '[:lower:]' '[:upper:]' <<< ${ORG_CONTEXT:0:1})${ORG_CONTEXT:1}"
-export ORG_NAME=GoVap-org
+export ORG_NAME=GoVapHospital
 
 # Logging specifications
 export FABRIC_LOGGING_SPEC=INFO
