@@ -1,0 +1,113 @@
+# YAML for launching the orderer
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: govaphospital-peer
+  labels:
+    app: govaphospital-peer
+spec:
+  serviceName: govaphospital-peer
+  replicas: 1
+  selector:
+    matchLabels:
+      app: govaphospital-peer
+  template:
+    metadata:
+      labels:
+        app: govaphospital-peer
+    spec:
+      containers:
+      - name: govaphospital-peer
+        # image used
+        image: nhutori4/govaphospital-peer:dev
+        # Uncomment the following during development/testing of the image
+        imagePullPolicy: Always
+        env:
+          - name: FABRIC_LOGGING_SPEC
+            value: INFO
+          - name: ORDERER_ADDRESS
+            value: healthcare-orderer-clusterip:30750
+          - name: CORE_PEER_ADDRESS
+          # value: govaphospital-peer-clusterip:30851
+            value: govaphospital-peer-clusterip:30851
+          - name: FABRIC_LOGGING_SPEC
+            value: debug
+          - name: CORE_PEER_TLS_ENABLED
+            value: "true"
+          - name: CORE_PEER_GOSSIP_USELEADERELECTION
+            value: "true"
+          - name: CORE_PEER_GOSSIP_ORGLEADER
+            value: "false"
+          - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
+            value: govaphospital-peer-clusterip:30851
+          - name: CORE_PEER_GOSSIP_SKIPHANDSHAKE
+            value: "true"
+        volumeMounts:
+        - name: govaphospital-peer-ledger
+          mountPath: /var/ledger
+        - name: dockersock
+          mountPath: /var/run/docker.sock
+      volumes:
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
+  volumeClaimTemplates:
+  - metadata: 
+      name: govaphospital-peer-ledger
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: storageclass-govaphospital
+      resources:
+        requests:
+          storage: 1Gi
+
+
+
+---
+# Expose the port 30851 as ClusterIP
+apiVersion: v1
+kind: Service
+metadata:
+  name: govaphospital-peer-clusterip
+
+spec:
+  # This defines which pods are going to be represented by this Service
+  # The service becomes a network endpoint for either other services
+  # or maybe external users to connect to (eg browser)
+  selector:
+    app: govaphospital-peer
+
+  ports:
+    - name: govaphospital-peer-clusterip
+      port: 30851
+    # - name: govaphospital-peer-cc-clusterip
+    #   port: 30852
+
+  type: ClusterIP
+
+---
+# Expose the port 30851 as node port -  NEEDED if you
+# are interested in connecting to the Pods from the Host
+# machine - keep in mind you would need the IP for the node
+# port service
+apiVersion: v1
+kind: Service
+metadata:
+  name: govaphospital-peer-nodeport
+
+spec:
+  # This defines which pods are going to be represented by this Service
+  # The service becomes a network endpoint for either other services
+  # or maybe external users to connect to (eg browser)
+  selector:
+    app: govaphospital-peer
+
+  ports:
+    - name: govaphospital-peer-nodeport-851
+      port: 30851
+      nodePort: 30851
+    - name: govaphospital-peer-cc-nodeport-852
+      port: 30852
+      nodePort: 30852
+
+  type: NodePort

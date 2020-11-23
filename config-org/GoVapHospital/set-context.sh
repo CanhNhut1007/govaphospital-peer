@@ -21,5 +21,5 @@ export FABRIC_LOGGING_SPEC=INFO
 
 # Local MSP for the admin - Commands need to be executed as org admin
 #export CORE_PEER_MSPCONFIGPATH=$PWD/../users/Admin@$ORG_CONTEXT.com/msp
-export CORE_PEER_MSPCONFIGPATH=/var/hyperledger/users/Admin/msp
+# export CORE_PEER_MSPCONFIGPATH=/var/hyperledger/users/Admin/msp
 
