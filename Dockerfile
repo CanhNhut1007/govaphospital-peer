@@ -9,10 +9,12 @@ LABEL  maintainer="Thach Canh Nhut"
 #1. Create a folder
 RUN rm -r /etc/hyperledger/fabric
 
+ENV CORE_PEER_MSPCONFIGPATH=/var/hyperledger/GoVapHospital/msp
+
 ENV FABRIC_CFG_PATH=/var/hyperledger/GoVapHospital
 
 #2. Copy the crypto for peer crypto
-COPY ./config-org/GoVapHospital/peers/peer1 /var/hyperledger/GoVapHospital
+COPY ./config-org/GoVapHospital/peers/peer2 /var/hyperledger/GoVapHospital
 
 #3. Copy the crypto for admin crypto
 COPY ./config-org/GoVapHospital/users /var/hyperledger/users
@@ -24,7 +26,7 @@ COPY ./config-org/GoVapHospital/users /var/hyperledger/users
 #COPY ./config/healthcare-channel.tx  /var/hyperledger/config/healthcare-channel.tx
 
 #6. Copy the core YAML
-COPY ./config-org/GoVapHospital/core.yaml /var/hyperledger/GoVapHospital
+COPY ./config-org/GoVapHospital/peers/peer2/core.yaml /var/hyperledger/GoVapHospital
 
 RUN mkdir /var/hyperledger/bins
 
