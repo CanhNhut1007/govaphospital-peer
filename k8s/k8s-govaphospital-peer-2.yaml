@@ -26,7 +26,7 @@ spec:
           - name: FABRIC_LOGGING_SPEC
             value: INFO
           - name: ORDERER_ADDRESS
-            value: healthcare-orderer-clusterip:30750
+            value: orderer1-ordererorg:30750
           - name: CORE_PEER_ADDRESS
           # value: govaphospital-peer-clusterip:30851
             value: govaphospital-peer-2-clusterip:31851
