@@ -45,7 +45,7 @@ spec:
           - name: CORE_PEER_GOSSIP_BOOTSTRAP
             value: govaphospital-peer-clusterip:30851
         volumeMounts:
-        - name: govaphospital-peer-ledger
+        - name: govaphospital-peer-2-ledger
           mountPath: /var/ledger
         - name: dockersock
           mountPath: /var/run/docker.sock
@@ -55,15 +55,13 @@ spec:
           path: /var/run/docker.sock
   volumeClaimTemplates:
   - metadata: 
-      name: govaphospital-peer-ledger
+      name: govaphospital-peer-2-ledger
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: storageclass-govaphospital
       resources:
         requests:
           storage: 1Gi
-
-
 
 ---
 # Expose the port 30851 as ClusterIP
