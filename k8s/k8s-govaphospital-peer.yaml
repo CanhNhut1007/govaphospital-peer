@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: govaphospital-peer
+  name: peer1-govaphospital
   labels:
-    app: govaphospital-peer
+    app: peer1-govaphospital
 spec:
-  serviceName: govaphospital-peer
+  serviceName: peer1-govaphospital
   replicas: 1
   selector:
     matchLabels:
-      app: govaphospital-peer
+      app: peer1-govaphospital
   template:
     metadata:
       labels:
-        app: govaphospital-peer
+        app: peer1-govaphospital
     spec:
       containers:
-      - name: govaphospital-peer
+      - name: peer1-govaphospital
         # image used
-        image: nhutori4/govaphospital-peer:dev
+        image: nhutori4/peer1-govaphospital:dev
         # Uncomment the following during development/testing of the image
         imagePullPolicy: Always
         env:
@@ -28,8 +28,8 @@ spec:
           - name: ORDERER_ADDRESS
             value: orderer1-ordererorg:30750
           - name: CORE_PEER_ADDRESS
-          # value: govaphospital-peer-clusterip:30851
-            value: govaphospital-peer-clusterip:30851
+          # value: peer1-govaphospital-clusterip:30851
+            value: peer1-govaphospital:30851
           - name: FABRIC_LOGGING_SPEC
             value: debug
           - name: CORE_PEER_TLS_ENABLED
@@ -39,11 +39,11 @@ spec:
           - name: CORE_PEER_GOSSIP_ORGLEADER
             value: "false"
           - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
-            value: govaphospital-peer-clusterip:30851
+            value: peer1-govaphospital:30851
           - name: CORE_PEER_GOSSIP_SKIPHANDSHAKE
             value: "true"
         volumeMounts:
-        - name: govaphospital-peer-ledger
+        - name: peer1-govaphospital-ledger
           mountPath: /var/ledger
         - name: dockersock
           mountPath: /var/run/docker.sock
@@ -53,7 +53,7 @@ spec:
           path: /var/run/docker.sock
   volumeClaimTemplates:
   - metadata: 
-      name: govaphospital-peer-ledger
+      name: peer1-govaphospital-ledger
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: storageclass-govaphospital
@@ -68,19 +68,19 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: govaphospital-peer-clusterip
+  name: peer1-govaphospital
 
 spec:
   # This defines which pods are going to be represented by this Service
   # The service becomes a network endpoint for either other services
   # or maybe external users to connect to (eg browser)
   selector:
-    app: govaphospital-peer
+    app: peer1-govaphospital
 
   ports:
-    - name: govaphospital-peer-clusterip
+    - name: peer1-govaphospital
       port: 30851
-    # - name: govaphospital-peer-cc-clusterip
+    # - name: peer1-govaphospital-cc-clusterip
     #   port: 30852
 
   type: ClusterIP
@@ -93,20 +93,20 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: govaphospital-peer-nodeport
+  name: peer1-govaphospital-nodeport
 
 spec:
   # This defines which pods are going to be represented by this Service
   # The service becomes a network endpoint for either other services
   # or maybe external users to connect to (eg browser)
   selector:
-    app: govaphospital-peer
+    app: peer1-govaphospital
 
   ports:
-    - name: govaphospital-peer-nodeport-851
+    - name: peer1-govaphospital-nodeport-851
       port: 30851
       nodePort: 30851
-    - name: govaphospital-peer-cc-nodeport-852
+    - name: peer1-govaphospital-cc-nodeport-852
       port: 30852
       nodePort: 30852
 
