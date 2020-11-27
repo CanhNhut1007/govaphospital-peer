@@ -106,7 +106,7 @@ peer:
         # Overrides the endpoint that the peer publishes to peers
         # in its organization. For peers in foreign organizations
         # see 'externalEndpoint'
-        endpoint: govaphospital-peer-2-clusterip:31851
+        endpoint: peer2-govaphospital:31851
         # Maximum count of blocks stored in memory
         maxBlockCountToStore: 100
         # Max time between consecutive message pushes(unit: millisecond)
@@ -156,7 +156,7 @@ peer:
         reconnectInterval: 25s
         # This is an endpoint that is published to peers outside of the organization.
         # If this isn't set, the peer will not be known to other organizations.
-        externalEndpoint: govaphospital-peer-2-clusterip:31851
+        externalEndpoint: peer2-govaphospital:31851
         # Leader election service configuration
         election:
             # Longest time peer waits for stable membership during leader election startup (unit: second)

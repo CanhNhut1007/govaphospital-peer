@@ -7,19 +7,19 @@ LABEL  maintainer="Thach Canh Nhut"
 #1. Create a folder
 RUN rm -r /etc/hyperledger/fabric
 
-ENV FABRIC_CFG_PATH=/var/hyperledger/GoVapHospital
-
-ENV CORE_PEER_MSPCONFIGPATH=/var/hyperledger/users/Admin/msp
-
 ENV FABRIC_LOGGING_SPEC=INFO
 
 ENV ORG_CONTEXT="GoVapHospital"
-
+ENV ORG_NAME="GoVapHospitalMSP"
 #2. Copy the crypto for peer crypto
 COPY ./config-org/GoVapHospital/peers/peer2 /var/hyperledger/GoVapHospital
 
+ENV FABRIC_CFG_PATH=/var/hyperledger/GoVapHospital
+
 #3. Copy the crypto for admin crypto
 COPY ./config-org/GoVapHospital/users /var/hyperledger/users
+
+ENV CORE_PEER_MSPCONFIGPATH=/var/hyperledger/users/Admin@GoVapHospital/msp
 
 #4. Copy the channel create tx file
 COPY channel.tx  /var/hyperledger/GoVapHospital/channel.tx
