@@ -80,7 +80,7 @@ peer:
         # Important: The endpoints here have to be endpoints of peers in the same
         # organization, because the peer would refuse connecting to these endpoints
         # unless they are in the same organization as the peer.
-        bootstrap: 
+        bootstrap: peer2-govaphospital:31851
 
         # NOTE: orgLeader and useLeaderElection parameters are mutual exclusive.
         # Setting both to true would result in the termination of the peer
@@ -93,12 +93,12 @@ peer:
         # connection with ordering service and use delivery protocol
         # to pull ledger blocks from ordering service. It is recommended to
         # use leader election for large networks of peers.
-        useLeaderElection: true
+        useLeaderElection: false
         # Statically defines peer to be an organization "leader",
         # where this means that current peer will maintain connection
         # with ordering service and disseminate block across peers in
         # its own organization
-        orgLeader: false
+        orgLeader: true
 
         # Interval for membershipTracker polling
         membershipTrackerInterval: 5s

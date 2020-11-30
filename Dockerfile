@@ -10,7 +10,7 @@ RUN rm -r /etc/hyperledger/fabric
 ENV FABRIC_LOGGING_SPEC=INFO
 
 ENV ORG_CONTEXT="GoVapHospital"
-ENV ORG_NAME="GoVapHospitalMSP"
+ENV ORG_NAME="GoVapHospital"
 #2. Copy the crypto for peer crypto
 COPY ./config-org/GoVapHospital/peers/peer2 /var/hyperledger/GoVapHospital
 

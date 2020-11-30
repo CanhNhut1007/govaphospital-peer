@@ -27,14 +27,9 @@ spec:
             value: INFO
           - name: ORDERER_ADDRESS
             value: orderer1-ordererorg:30750
-          - name: CORE_PEER_ADDRESS
-          # value: govaphospital-peer-clusterip:30851
-            value: peer2-govaphospital:31851
           - name: FABRIC_LOGGING_SPEC
             value: debug
           - name: CORE_PEER_TLS_ENABLED
-            value: "true"
-          - name: CORE_PEER_GOSSIP_USELEADERELECTION
             value: "true"
           - name: CORE_PEER_GOSSIP_ORGLEADER
             value: "false"
