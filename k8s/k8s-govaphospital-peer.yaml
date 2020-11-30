@@ -73,8 +73,8 @@ spec:
   ports:
     - name: peer1-govaphospital
       port: 30851
-    # - name: peer1-govaphospital-cc-clusterip
-    #   port: 30852
+    - name: peer1-govaphospital-cc-clusterip
+      port: 30852
 
   type: ClusterIP
 

@@ -24,7 +24,7 @@ peer:
     # The endpoint this peer uses to listen for inbound chaincode connections.
     # If this is commented-out, the listen address is selected to be
     # the peer's address (see below) with port 7052
-    chaincodeListenAddress: 0.0.0.0:31852
+    chaincodeListenAddress:  peer2-govaphospital-cc-clusterip:31852
 
     # The endpoint the chaincode for this peer uses to connect to the peer.
     # If this is not specified, the chaincodeListenAddress address is selected.
@@ -36,7 +36,7 @@ peer:
     # in the same organization. For peers in other organization, see
     # gossip.externalEndpoint for more info.
     # When used as CLI config, this means the peer's endpoint to interact with
-    address: 0.0.0.0:31851
+    address: peer2-govaphospital:31851
 
     # Whether the Peer should programmatically determine its address
     # This case is useful for docker containers.
@@ -106,7 +106,7 @@ peer:
         # Overrides the endpoint that the peer publishes to peers
         # in its organization. For peers in foreign organizations
         # see 'externalEndpoint'
-        endpoint: peer2-govaphospital:31851
+        endpoint: peer1-govaphospital:30851
         # Maximum count of blocks stored in memory
         maxBlockCountToStore: 100
         # Max time between consecutive message pushes(unit: millisecond)
