@@ -24,7 +24,7 @@ peer:
     # The endpoint this peer uses to listen for inbound chaincode connections.
     # If this is commented-out, the listen address is selected to be
     # the peer's address (see below) with port 7052
-    chaincodeListenAddress: peer1-govaphospital-cc-clusterip:30852
+    chaincodeListenAddress: 0.0.0.0:30852
 
     # The endpoint the chaincode for this peer uses to connect to the peer.
     # If this is not specified, the chaincodeListenAddress address is selected.
@@ -106,7 +106,7 @@ peer:
         # Overrides the endpoint that the peer publishes to peers
         # in its organization. For peers in foreign organizations
         # see 'externalEndpoint'
-        endpoint: peer1-govaphospital:30851
+        endpoint: peer2-govaphospital:31851
         # Maximum count of blocks stored in memory
         maxBlockCountToStore: 100
         # Max time between consecutive message pushes(unit: millisecond)
