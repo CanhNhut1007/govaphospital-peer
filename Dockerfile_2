@@ -14,23 +14,21 @@ ENV FABRIC_LOGGING_SPEC=INFO
 ENV ORG_CONTEXT="GoVapHospital"
 ENV ORG_NAME="GoVapHospitalMSP"
 #2. Copy the crypto for peer crypto
-COPY ./config-org/GoVapHospital/peers/peer1 /var/hyperledger/GoVapHospital
+COPY ./config-org/GoVapHospital/peers/peer2 /var/hyperledger/GoVapHospital
 
 ENV FABRIC_CFG_PATH=/var/hyperledger/GoVapHospital
 
-ENV CORE_PEER_ADDRESS="peer1-govaphospital:30851"
+ENV CORE_PEER_ADDRESS="peer2-govaphospital:31851"
 
 ENV CORE_PEER_GOSSIP_USELEADERELECTION=true
 
 ENV CORE_PEER_GOSSIP_ORGLEADER=false
 
-#ENV CORE_PEER_GOSSIP_BOOTSTRAP="peer2-govaphospital:31851"
+ENV CORE_PEER_GOSSIP_BOOTSTRAP="peer1-govaphospital:30851"
 
-ENV CORE_PEER_ENDORSER_ENABLED=true
+ENV CORE_PEER_GOSSIP_EXTERNALENDPOINT="peer2-govaphospital:31851"
 
-ENV CORE_PEER_GOSSIP_EXTERNALENDPOINT="peer1-govaphospital:30851"
-
-ENV CORE_PEER_GOSSIP_ENDPOINT="peer1-govaphospital:30851"
+ENV CORE_PEER_GOSSIP_ENDPOINT="peer2-govaphospital:31851"
 
 #3. Copy the crypto for admin crypto
 COPY ./config-org/GoVapHospital/users /var/hyperledger/users
@@ -41,7 +39,7 @@ ENV CORE_PEER_MSPCONFIGPATH=/var/hyperledger/GoVapHospital/msp
 COPY hospitalchannel.tx  /var/hyperledger/GoVapHospital/hospitalchannel.tx
 
 #5. Copy the core YAML
-COPY ./config-org/GoVapHospital/peers/peer1/core.yaml /var/hyperledger/GoVapHospital
+COPY ./config-org/GoVapHospital/peers/peer2/core.yaml /var/hyperledger/GoVapHospital
 
 #6. Copy the test chaincode
 #COPY ./nodechaincode  /var/hyperledger/nodechaincode
