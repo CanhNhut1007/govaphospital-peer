@@ -94,7 +94,7 @@ Orderer: &OrdererDefaults
     - orderer1-ordererorg:30750
     - orderer2-ordererorg:31750
     - orderer3-ordererorg:32750
-    - orderer4-ordererorg:29750
+    - orderer4-ordererorg:32570
   # Policies for Orderer
   Policies:
     Readers:
@@ -139,7 +139,7 @@ Orderer: &OrdererDefaults
             ServerTLSCert: OrdererOrg/orderer3/tls-cert/cert.pem
             
           - Host: orderer4-ordererorg
-            Port: 29750
+            Port: 32570
             ClientTLSCert: OrdererOrg/orderer4/tls-cert/cert.pem
             ServerTLSCert: OrdererOrg/orderer4/tls-cert/cert.pem 
 
