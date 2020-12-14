@@ -41,11 +41,11 @@ Organizations:
       Readers:
           Type: Signature
           # Any member can READ e.g., query
-          Rule: "OR('ThuDucHospitalMSP.admin','ThuDucHospitalMSP.client','ThuDucHospitalMSP.peer')"
+          Rule: "OR('ThuDucHospitalMSP.member')"
       Writers:
           Type: Signature
           # Any member can WRITE e.g., submit transaction
-          Rule: "OR('ThuDucHospitalMSP.admin','ThuDucHospitalMSP.client')"
+          Rule: "OR('ThuDucHospitalMSP.member')"
       Admins:
           Type: Signature
           # Either Acme admin OR Orderer Admin can carry out admin activities
@@ -53,7 +53,7 @@ Organizations:
       Endorsement:
           Type: Signature
           # Any member can act as an endorser
-          Rule: "OR('ThuDucHospitalMSP.peer')"
+          Rule: "OR('ThuDucHospitalMSP.member')"
     AnchorPeers:
       - Host: peer1-thuduchospital
         Port: 30751
@@ -66,18 +66,18 @@ Organizations:
       Readers:
           Type: Signature
           # Any member
-          Rule: "OR('GoVapHospitalMSP.peer','GoVapHospitalMSP.admin','GoVapHospitalMSP.client')"
+          Rule: "OR('GoVapHospitalMSP.member')"
       Writers:
           Type: Signature
           # Any member
-          Rule: "OR('GoVapHospitalMSP.admin','GoVapHospitalMSP.client')"
+          Rule: "OR('GoVapHospitalMSP.member')"
       Admins:
           Type: Signature
           # BOTH Budget Admin AND Orderer Admin needed for admin activities
           Rule: "OR('GoVapHospitalMSP.admin')"
       Endorsement:
           Type: Signature
-          Rule: "OR('GoVapHospitalMSP.peer')"
+          Rule: "OR('GoVapHospitalMSP.member')"
     AnchorPeers:
       - Host: peer1-govaphospital
         Port: 30851
@@ -95,6 +95,7 @@ Orderer: &OrdererDefaults
     - orderer2-ordererorg:31750
     - orderer3-ordererorg:32750
     - orderer4-ordererorg:32570
+    - orderer5-ordererorg:31570
   # Policies for Orderer
   Policies:
     Readers:
@@ -143,6 +144,11 @@ Orderer: &OrdererDefaults
             ClientTLSCert: OrdererOrg/orderer4/tls-cert/cert.pem
             ServerTLSCert: OrdererOrg/orderer4/tls-cert/cert.pem 
 
+          - Host: orderer5-ordererorg
+            Port: 31570
+            ClientTLSCert: OrdererOrg/orderer5/tls-cert/cert.pem
+            ServerTLSCert: OrdererOrg/orderer5/tls-cert/cert.pem           
+ 
       # Options to be specified for all the etcd/raft nodes. The values here
       # are the defaults for all new channels and can be modified on a
       # per-channel basis via configuration updates.
@@ -327,7 +333,7 @@ Profiles:
                   
   HospitalChannel:
     <<: *ChannelDefaults
-    Consortium: HospitalConsortium
+    Consortium: OrdererOrgConsortium
         
     Application:
         <<: *ApplicationDefaults
