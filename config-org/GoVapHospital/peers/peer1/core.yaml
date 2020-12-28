@@ -30,13 +30,13 @@ peer:
     # If this is not specified, the chaincodeListenAddress address is selected.
     # And if chaincodeListenAddress is not specified, address is selected from
     # peer listenAddress.
-    # chaincodeAddress: 0.0.0.0:30852
+    chaincodeAddress: 
 
     # When used as peer config, this represents the endpoint to other peers
     # in the same organization. For peers in other organization, see
     # gossip.externalEndpoint for more info.
     # When used as CLI config, this means the peer's endpoint to interact with
-    address: 0.0.0.0:30851
+    address: peer1-govaphospital:30851
 
     # Whether the Peer should programmatically determine its address
     # This case is useful for docker containers.
@@ -80,7 +80,7 @@ peer:
         # Important: The endpoints here have to be endpoints of peers in the same
         # organization, because the peer would refuse connecting to these endpoints
         # unless they are in the same organization as the peer.
-        bootstrap: peer1-govaphospital:30851
+        bootstrap: 
 
         # NOTE: orgLeader and useLeaderElection parameters are mutual exclusive.
         # Setting both to true would result in the termination of the peer

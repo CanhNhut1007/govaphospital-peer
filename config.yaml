@@ -6,7 +6,7 @@
 #  - Certificate: "cacerts/cacert.pem"
 #    OrganizationalUnitIdentifier: "GV"
 NodeOUs:
-  Enable: false
+  Enable: true
   # For each identity classification that you would like to utilize, specify
   # an OU identifier.
   # You can optionally configure that the OU identifier must be issued by a specific CA
@@ -14,15 +14,15 @@ NodeOUs:
   # configure a specific Certificate. By not configuring a specific Certificate, you will be
   # able to add other CA or intermediate certs later, without having to reissue all credentials.
   # For this reason, the sample below comments out the Certificate field.
-  #ClientOUIdentifier:
-    #Certificate: "cacerts/cacert.pem"
-    #OrganizationalUnitIdentifier: "OU_client"
+  ClientOUIdentifier:
+    Certificate: cacerts/cacert.pem
+    OrganizationalUnitIdentifier: client
   PeerOUIdentifier:
-    Certificate: "signcerts/peer.pem"
-    OrganizationalUnitIdentifier: "peer"
+    Certificate: cacerts/cacert.pem
+    OrganizationalUnitIdentifier: peer
   AdminOUIdentifier:
-    Certificate: "admincerts/admincert.pem"
-    OrganizationalUnitIdentifier: "user"
- #OrdererOUIdentifier:
-    # Certificate: "cacerts/cacert.pem"
-  # OrganizationalUnitIdentifier: "OU_orderer"
+    Certificate: cacerts/cacert.pem
+    OrganizationalUnitIdentifier: admin
+  OrdererOUIdentifier:
+    Certificate: cacerts/cacert.pem
+    OrganizationalUnitIdentifier: orderer
