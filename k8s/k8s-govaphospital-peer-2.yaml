@@ -25,20 +25,6 @@ spec:
         env:
           - name: FABRIC_LOGGING_SPEC
             value: INFO
-          - name: ORDERER_ADDRESS
-            value: orderer1-ordererorg:30750
-          - name: FABRIC_LOGGING_SPEC
-            value: debug
-          - name: CORE_PEER_TLS_ENABLED
-            value: "true"
-          - name: CORE_PEER_GOSSIP_ORGLEADER
-            value: "false"
-          - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
-            value: peer2-govaphospital:31851
-          - name: CORE_PEER_GOSSIP_SKIPHANDSHAKE
-            value: "true"
-          - name: CORE_PEER_GOSSIP_BOOTSTRAP
-            value: peer1-govaphospital:30851
         volumeMounts:
         - name: peer2-govaphospital-ledger
           mountPath: /var/ledger
