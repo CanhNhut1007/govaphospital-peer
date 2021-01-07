@@ -342,6 +342,25 @@ Profiles:
             - <<: *ThuDucHospital
             - <<: *GoVapHospital
 
+  ThuDucChannel:
+    <<: *ChannelDefaults
+    Consortium: OrdererOrgConsortium
+        
+    Application:
+        <<: *ApplicationDefaults
+        
+        Organizations:
+            - <<: *ThuDucHospital
+
+  GoVapChannel:
+    <<: *ChannelDefaults
+    Consortium: OrdererOrgConsortium
+        
+    Application:
+        <<: *ApplicationDefaults
+        
+        Organizations:
+            - <<: *GoVapHospital
         
 
 
